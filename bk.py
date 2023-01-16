@@ -42,16 +42,27 @@ offersCalsPrice["$3 Whopper Wednesday (Wednesdays only)"] = [whopper, 3]
 offersCalsPrice["$5.50 Double Cheeseburger, Small Fries, Small Soft Drink"] = [doubleCheeseburger + smallFries, 5.50]
 offersCalsPrice["$6.99 Snack box"] = [cheeseburger + EightPcNuggets + smallFries, 6.99]
 
+# track highest caloriesPerDollar
+highestCaloriesPerDollar = 0
+highestCaloriesPerDollarName = ""
+highestCaloriesPerDollarPrice = ""
+highestCaloriesPerDollarCals = 0
 
 for item in offersCalsPrice:
     padding = len(item)
     currentCalsAndPrice = offersCalsPrice[item]
     cals = currentCalsAndPrice[0]
     price = currentCalsAndPrice[1]
+    if cals / price > highestCaloriesPerDollar:
+        highestCaloriesPerDollar = cals / price
+        highestCaloriesPerDollarName = item
+        highestCaloriesPerDollarPrice = price
+        highestCaloriesPerDollarCals = cals
     #print(item[0])
     print(item, " "* (60-padding), "cals:", cals ,"      price: $", price, "  cals per dollar: ", int(cals/price) )
 
 
+print(" \nThe most efficient calories per dollar offer is the ", highestCaloriesPerDollarName, " at ", highestCaloriesPerDollarPrice, " dollars and ", highestCaloriesPerDollarCals, " calories")
 
 
 #print(offersCalsPrice)
